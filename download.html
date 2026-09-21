@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>PlasmoRhythm-Download</title>
+  <meta name="description"
+    content="Download transcriptomics, metabolomics, proteomics and other datasets from PlasmoRhythm">
+  <meta name="keywords" content="PlasmoRhythm, download, malaria, rhythmicity, datasets">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<style>
+  .page-title:before {
+    content: "";
+    background:
+      linear-gradient(to bottom, color-mix(in srgb, #2c1e56, transparent 80%), #2c1e56),
+      url('assets/p_img/mbg.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    inset: 0;
+  }
+
+  /* ── Download Cards ── */
+  .download-section {
+    padding: 40px 0 20px;
+  }
+
+  .omics-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(44, 30, 86, 0.10);
+    padding: 22px 18px 18px;
+    height: 100%;
+    border-top: 4px solid #2c1e56;
+    transition: box-shadow 0.2s;
+  }
+
+  .omics-card:hover {
+    box-shadow: 0 8px 32px rgba(44, 30, 86, 0.18);
+  }
+
+  .omics-card .card-icon {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .omics-card .card-icon img {
+    width: 110px;
+    height: 45px;
+    object-fit: contain;
+  }
+
+  .omics-card h4 {
+    text-align: center;
+    font-size: 1em;
+    font-weight: 700;
+    color: #2c1e56;
+    margin-bottom: 14px;
+  }
+
+  /* Species dropdown */
+  .species-label {
+    font-size: 0.78em;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .species-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1.5px solid #c0b4e0;
+    border-radius: 8px;
+    font-size: 0.88em;
+    color: #2c1e56;
+    background: #f8f6ff;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232c1e56' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    transition: border-color 0.2s;
+  }
+
+  .species-select:focus {
+    border-color: #2c1e56;
+    box-shadow: 0 0 0 3px rgba(44, 30, 86, 0.10);
+  }
+
+  /* Shared Table Card Styles */
+  .shared-table-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(44, 30, 86, 0.08);
+    padding: 24px;
+    border-top: 4px solid #ffa200;
+    /* Orange Accent Border matching the table header */
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-close-table:hover {
+    color: #ffa200 !important;
+  }
+
+  /* Orange Styled Table (matching the user's reference image exactly!) */
+  .shared-dataset-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-family: inherit;
+    border: 1px solid #ddd;
+  }
+
+  .shared-dataset-table th {
+    background-color: #ffa200;
+    color: white;
+    text-align: center;
+    padding: 12px 15px;
+    font-weight: bold;
+    font-size: 0.95em;
+    border: 1px solid #ddd;
+  }
+
+  .shared-dataset-table td {
+    text-align: center;
+    padding: 11px 15px;
+    border: 1px solid #ddd;
+    color: #444;
+    font-size: 0.9em;
+    vertical-align: middle;
+  }
+
+  /* Alternate row background */
+  .shared-dataset-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .shared-dataset-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Link styles matching the blue text in the user's reference image */
+  .dl-link-blue {
+    color: #337ab7 !important;
+    font-weight: 600;
+    text-decoration: underline !important;
+    transition: color 0.2s;
+  }
+
+  .dl-link-blue:hover {
+    color: #23527c !important;
+  }
+
+  .species-name-italic {
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════════════════
+     VERTICAL TAB PANEL LAYOUT
+  ═══════════════════════════════════════════ */
+  .dl-panel-wrap {
+    display: flex;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 30px rgba(44, 30, 86, 0.08);
+    overflow: hidden;
+    min-height: 540px;
+  }
+
+  /* Left Vertical Tab List */
+  .dl-tab-list {
+    width: 230px;
+    min-width: 230px;
+    background: #2c1e56;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+  }
+
+  .dl-tab-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 22px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.88em;
+    font-weight: 600;
+    text-align: left;
+    width: 100%;
+    transition: background 0.18s, color 0.18s;
+    border-left: 4px solid transparent;
+    letter-spacing: 0.2px;
+    line-height: 1.35;
+  }
+
+  .dl-tab-item i {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    width: 22px;
+    text-align: center;
+  }
+
+  .dl-tab-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .dl-tab-item.active {
+    background: rgba(255, 162, 0, 0.12);
+    color: #fff;
+    border-left-color: #ffa200;
+  }
+
+  .dl-tab-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 8px 18px;
+  }
+
+  /* Right Content Panel */
+  .dl-panel-content {
+    flex: 1;
+    padding: 36px 36px;
+    overflow-x: auto;
+  }
+
+  .dl-panel {
+    display: none;
+    animation: fadePanel 0.2s ease;
+  }
+
+  .dl-panel.active {
+    display: block;
+  }
+
+  @keyframes fadePanel {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Panel header */
+  .panel-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0edf8;
+  }
+
+  .panel-header-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2c1e56 0%, #4a3580 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffa200;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .panel-header-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(10);
+  }
+
+  .panel-header-text h3 {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #2c1e56;
+    margin: 0 0 4px 0;
+  }
+
+  .panel-header-text p {
+    font-size: 0.88em;
+    color: #888;
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  /* Species selector within panel */
+  .species-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    background: #f7f5fd;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid #e0d8f5;
+  }
+
+  .species-row label {
+    font-size: 0.82em;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .species-row select {
+    flex: 1;
+    padding: 9px 14px;
+    border-radius: 6px;
+    border: 1px solid #c0b4e0;
+    color: #2c1e56;
+    font-weight: 600;
+    font-size: 0.88em;
+    background-color: #fff;
+    outline: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .species-row select:focus {
+    border-color: #ffa200;
+    box-shadow: 0 0 0 3px rgba(255, 162, 0, 0.15);
+  }
+
+  /* Empty state */
+  .panel-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    color: #ccc;
+    text-align: center;
+  }
+
+  .panel-empty-state i {
+    font-size: 3rem;
+    margin-bottom: 14px;
+    color: #d8d0f0;
+  }
+
+  .panel-empty-state p {
+    font-size: 0.9em;
+    color: #aaa;
+  }
+
+  /* Direct download panel */
+  .dl-direct-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .dl-direct-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    background: #2c1e56;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 1em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .dl-direct-btn:hover {
+    background: #1a1233;
+    transform: translateY(-2px);
+  }
+
+  .dl-direct-btn.orange {
+    background: #ffa200;
+  }
+
+  .dl-direct-btn.orange:hover {
+    background: #e08f00;
+  }
+
+  .dl-direct-btn i {
+    font-size: 1.2rem;
+  }
+
+  .dl-info-box {
+    background: #f7f5fd;
+    border-left: 4px solid #2c1e56;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 0.88em;
+    color: #555;
+    line-height: 1.6;
+    max-width: 520px;
+  }
+</style>
+
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1 class="sitename">PlasmoRhythm<sup
+            style="font-size: 0.35em; vertical-align: super; line-height: 0; font-style: italic;">v1.0</sup></h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+            <a><span>Rhythmicity</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li class="dropdown">
+                <a><span>Transcriptomics</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="host.php">Host</a></li>
+                  <li><a href="A-steph.php">Vector</a></li>
+                  <li><a href="P-falciparum.php"><span>Parasite</span></a></li>
+                </ul>
+              </li>
+              <li><a href="metabolomics.php">Metabolomics</a></li>
+              <li><a href="proteomics.php"><span>Proteomics</span></a></li>
+            </ul>
+          </li>
+          <li><a href="virulence.php"><span>Virulence Factors</span></a></li>
+          <li><a href="drug.php"><span>Drug Interactors</span></a></li>
+          <li><a href="download.html" class="active">Download</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="help.php">Help</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container position-relative">
+        <h1>Downloads</h1>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         DOWNLOAD SECTION — Vertical Tab Panel
+    ══════════════════════════════════════════════════════ -->
+    <section style="padding: 50px 0; background-color: #f8f9fa;">
+      <div class="container-fluid container-xl">
+
+        <div class="dl-panel-wrap">
+
+          <!-- ── Left: Vertical Tab List ── -->
+          <nav class="dl-tab-list" id="dl-tab-list">
+
+            <div style="padding: 20px 22px 14px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+              <p
+                style="color: rgba(255,255,255,0.4); font-size: 0.72em; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">
+                Rhythmicity Data</p>
+            </div>
+
+            <button class="dl-tab-item active" onclick="switchTab('transcriptomics', this)">
+              <i class="bi bi-bar-chart-line-fill"></i> Transcriptomics
+            </button>
+            <button class="dl-tab-item" onclick="switchTab('metabolomics', this)">
+              <i class="bi bi-droplet-fill"></i> Metabolomics
+            </button>
+            <button class="dl-tab-item" onclick="switchTab('proteomics', this)">
+              <i class="bi bi-grid-3x3-gap-fill"></i> Proteomics
+            </button>
+
+            <div class="dl-tab-divider"></div>
+            <div style="padding: 10px 22px 8px; ">
+              <p
+                style="color: rgba(255,255,255,0.4); font-size: 0.72em; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">
+                Databases</p>
+            </div>
+
+            <button class="dl-tab-item" onclick="switchTab('virulence', this)">
+              <i class="bi bi-shield-fill-exclamation"></i> Virulence Factors
+            </button>
+            <button class="dl-tab-item" onclick="switchTab('drug', this)">
+              <i class="bi bi-capsule-pill"></i> Drug Interactions
+            </button>
+
+            <div class="dl-tab-divider"></div>
+            <button class="dl-tab-item" onclick="switchTab('bulk', this)">
+              <i class="bi bi-file-earmark-zip-fill"></i> Bulk Download
+            </button>
+
+          </nav>
+
+          <!-- ── Right: Content Panels ── -->
+          <div class="dl-panel-content">
+
+            <!-- Panel: Transcriptomics -->
+            <div class="dl-panel active" id="panel-transcriptomics">
+              <div class="panel-header">
+                <div class="panel-header-icon">
+                  <i class="bi bi-bar-chart-line-fill"></i>
+                </div>
+                <div class="panel-header-text">
+                  <h3>Rhythmicity: Transcriptomics</h3>
+                  <p>Select a species below to browse and download circadian transcriptomics datasets.</p>
+                </div>
+              </div>
+              <div class="species-row">
+                <label for="sel-transcriptomics"><i class="bi bi-funnel-fill"
+                    style="margin-right:5px;"></i>Species</label>
+                <select id="sel-transcriptomics"
+                  onchange="loadPanelTable('transcriptomics', this.value, 'tbl-transcriptomics')">
+                  <option value="">— Select a species to view dataset —</option>
+                  <option value="A_gambiae">Anopheles gambiae</option>
+                  <option value="A_stephensi">Anopheles stephensi</option>
+                  <option value="P_falciparum">Plasmodium falciparum</option>
+                  <option value="P_vivax">Plasmodium vivax</option>
+                  <option value="P_chabaudi">Plasmodium chabaudi</option>
+                  <option value="P_berghei">Plasmodium berghei</option>
+                  <option value="H_sapiens">Homo sapiens</option>
+                </select>
+              </div>
+              <div id="tbl-transcriptomics">
+                <div class="panel-empty-state">
+                  <i class="bi bi-table"></i>
+                  <p>Choose a species above to display its dataset table.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel: Metabolomics -->
+            <div class="dl-panel" id="panel-metabolomics">
+              <div class="panel-header">
+                <div class="panel-header-icon">
+                  <i class="bi bi-droplet-fill"></i>
+                </div>
+                <div class="panel-header-text">
+                  <h3>Rhythmicity: Metabolomics</h3>
+                  <p>Select a species below to browse and download circadian metabolomics datasets.</p>
+                </div>
+              </div>
+              <div class="species-row">
+                <label for="sel-metabolomics"><i class="bi bi-funnel-fill" style="margin-right:5px;"></i>Species</label>
+                <select id="sel-metabolomics" onchange="loadPanelTable('metabolomics', this.value, 'tbl-metabolomics')">
+                  <option value="">— Select a species to view dataset —</option>
+                  <option value="P_falciparum">Plasmodium falciparum</option>
+                </select>
+              </div>
+              <div id="tbl-metabolomics">
+                <div class="panel-empty-state">
+                  <i class="bi bi-table"></i>
+                  <p>Choose a species above to display its dataset table.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel: Proteomics -->
+            <div class="dl-panel" id="panel-proteomics">
+              <div class="panel-header">
+                <div class="panel-header-icon">
+                  <i class="bi bi-grid-3x3-gap-fill"></i>
+                </div>
+                <div class="panel-header-text">
+                  <h3>Rhythmicity: Proteomics</h3>
+                  <p>Select a species below to browse and download circadian proteomics datasets.</p>
+                </div>
+              </div>
+              <div class="species-row">
+                <label for="sel-proteomics"><i class="bi bi-funnel-fill" style="margin-right:5px;"></i>Species</label>
+                <select id="sel-proteomics" onchange="loadPanelTable('proteomics', this.value, 'tbl-proteomics')">
+                  <option value="">— Select a species to view dataset —</option>
+                  <option value="P_falciparum">Plasmodium falciparum</option>
+                  <option value="A_stephensi">Anopheles stephensi</option>
+                </select>
+              </div>
+              <div id="tbl-proteomics">
+                <div class="panel-empty-state">
+                  <i class="bi bi-table"></i>
+                  <p>Choose a species above to display its dataset table.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel: Virulence Factors -->
+            <div class="dl-panel" id="panel-virulence">
+              <div class="panel-header">
+                <div class="panel-header-icon">
+                  <i class="bi bi-shield-fill-exclamation"></i>
+                </div>
+                <div class="panel-header-text">
+                  <h3>Virulence Factors Database</h3>
+                  <p>Download the complete PlasmoRhythm Virulence Factor module spreadsheet (RVF_Module).</p>
+                </div>
+              </div>
+              <div class="dl-direct-area">
+                <div class="dl-info-box">
+                  <strong>Contents:</strong> Curated virulence factor genes across <em>Plasmodium</em> species, with
+                  annotations, expression links, and rhythmicity associations.
+                </div>
+                <a href="Archive/RVF_Module.xlsx" class="dl-direct-btn">
+                  <i class="bi bi-file-earmark-excel-fill"></i> Download RVF_Module.xlsx
+                </a>
+              </div>
+            </div>
+
+            <!-- Panel: Drug Interactions -->
+            <div class="dl-panel" id="panel-drug">
+              <div class="panel-header">
+                <div class="panel-header-icon">
+                  <i class="bi bi-capsule-pill"></i>
+                </div>
+                <div class="panel-header-text">
+                  <h3>Drug Interactions Database</h3>
+                  <p>Download the complete anti-malarial drug interaction module spreadsheet (RAID_Module).</p>
+                </div>
+              </div>
+              <div class="dl-direct-area">
+                <div class="dl-info-box">
+                  <strong>Contents:</strong> Anti-malarial drug interaction data, including pharmacological targets,
+                  compound associations, and circadian drug sensitivity windows.
+                </div>
+                <a href="Archive/RAID_Module.xlsx" class="dl-direct-btn">
+                  <i class="bi bi-file-earmark-excel-fill"></i> Download RAID_Module.xlsx
+                </a>
+              </div>
+            </div>
+
+            <!-- Panel: Bulk Download -->
+            <div class="dl-panel" id="panel-bulk">
+              <div class="panel-header">
+                <div class="panel-header-icon" style="background: linear-gradient(135deg, #e08f00, #ffa200);">
+                  <i class="bi bi-file-earmark-zip-fill" style="color:#fff;"></i>
+                </div>
+                <div class="panel-header-text">
+                  <h3>Bulk Download — Full Dataset</h3>
+                  <p>Download the entire PlasmoRhythm v1.0 dataset as a single compressed archive.</p>
+                </div>
+              </div>
+              <div class="dl-direct-area">
+                <div class="dl-info-box">
+                  <strong>Includes:</strong> All transcriptomics, metabolomics, and proteomics datasets across all
+                  species, plus virulence factor and drug interaction databases — packaged as a single ZIP file.
+                </div>
+                <a href="download_section/bulk_download.php" class="dl-direct-btn orange">
+                  <i class="bi bi-download"></i> Download Complete ZIP
+                </a>
+              </div>
+            </div>
+
+          </div><!-- /dl-panel-content -->
+
+        </div><!-- /dl-panel-wrap -->
+
+      </div><!-- /container -->
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="d-flex align-items-center">
+            <span class="sitename">PlasmoRhythm</span>
+          </a>
+          <p style="font-size:0.85em; font-style:italic; color:#aaa; margin:4px 0 0 0;">Release version 1.0 &mdash; February 2026</p>
+          <div class="footer-contact pt-3">
+            <p>Department of Biotechnology</p>
+            <p>IIT Hyderabad, 502285</p>
+            <p><strong>Email:</strong> <span>filipaferreira@berkeley.edu</span></p>
+            <p><strong>Email:</strong> <span>rahulk@bt.iith.ac.in</span></p>
+            <p><strong>Email:</strong> <span>sandipan.ray@bt.iith.ac.in</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;">
+      <a href="https://iith.ac.in/" target="_blank"
+        style="position:absolute; right:20px; bottom:20px; margin-right:70px;">
+        <img src="assets/img/removeiith.png" alt="" style="width:300px; height:100px;">
+      </a>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">
+          <a href="https://www.circadianlab-iith.com/">CRDB Lab</a> and
+          <a href="https://people.iith.ac.in/rahulk/index.html">CG&T Lab</a>
+        </strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Template by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- ══════════════════════════════════════════════════════
+       DATASET DEFINITIONS
+  ══════════════════════════════════════════════════════ -->
+  <script>
+    // Each entry: { sno, species, study, condition, meta2d, processed, original, description }
+    function buildTable(rows) {
+      let html = `
+        <div class="table-responsive">
+        <table class="shared-dataset-table">
+          <thead>
+            <tr>
+              <th style="width: 60px;">S.No.</th>
+              <th>Species</th>
+              <th>Study / Publication</th>
+              <th>Strain / Condition</th>
+              <th>meta2D Output</th>
+              <th>Processed Data</th>
+              <th>Original Data</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>`;
+      rows.forEach(r => {
+        let meta2dHtml = `<span style="color:#aaa;">N/A</span>`;
+        let processedHtml = `<span style="color:#aaa;">N/A</span>`;
+        let originalHtml = `<span style="color:#aaa;">N/A</span>`;
+
+        let formatUrl = (path) => {
+          if (!path) return '';
+          let cleanPath = path.replace(/^(\.\.\/)+/, '');
+          return `download_section/download_data.php?file=${encodeURIComponent(cleanPath)}`;
+        };
+
+        if (r.meta2d) {
+          meta2dHtml = `<a class="dl-link-blue" href="${formatUrl(r.meta2d)}" download>Download</a>`;
+        }
+        if (r.processed) {
+          processedHtml = `<a class="dl-link-blue" href="${formatUrl(r.processed)}" download>Download</a>`;
+        }
+        if (r.original) {
+          originalHtml = `<a class="dl-link-blue" href="${formatUrl(r.original)}" download>Download</a>`;
+        }
+
+        html += `<tr>
+          <td style="font-weight:bold;">${r.sno}</td>
+          <td><span class="species-name-italic">${r.species}</span></td>
+          <td>${r.study}</td>
+          <td>${r.condition}</td>
+          <td>${meta2dHtml}</td>
+          <td>${processedHtml}</td>
+          <td>${originalHtml}</td>
+          <td>${r.description}</td>
+        </tr>`;
+      });
+      html += `</tbody></table></div>`;
+      return html;
+    }
+
+    function switchTab(panelId, btnEl) {
+      // Deactivate all tabs
+      document.querySelectorAll('.dl-tab-item').forEach(b => b.classList.remove('active'));
+      // Deactivate all panels
+      document.querySelectorAll('.dl-panel').forEach(p => p.classList.remove('active'));
+      // Activate clicked tab
+      btnEl.classList.add('active');
+      // Activate target panel
+      const panel = document.getElementById('panel-' + panelId);
+      if (panel) panel.classList.add('active');
+    }
+
+    async function loadPanelTable(omics, speciesKey, targetDivId) {
+      const targetDiv = document.getElementById(targetDivId);
+      if (!targetDiv) return;
+
+      if (!speciesKey) {
+        targetDiv.innerHTML = `<div class="panel-empty-state"><i class="bi bi-table"></i><p>Choose a species above to display its dataset table.</p></div>`;
+        return;
+      }
+
+      targetDiv.innerHTML = `<div class="panel-empty-state"><div class="spinner-border" style="color: #ffa200;" role="status"></div><p style="margin-top:10px;">Loading datasets...</p></div>`;
+
+      try {
+        const response = await fetch(`download_section/fetch_datasets.php?category=${encodeURIComponent(omics)}&species=${encodeURIComponent(speciesKey)}`);
+        const result = await response.json();
+
+        if (result.success && result.data.length > 0) {
+          targetDiv.innerHTML = buildTable(result.data);
+        } else {
+          targetDiv.innerHTML = `<div class="panel-empty-state"><i class="bi bi-table"></i><p>No dataset found for this selection.</p></div>`;
+        }
+      } catch (e) {
+        targetDiv.innerHTML = `<div class="panel-empty-state"><i class="bi bi-exclamation-triangle-fill" style="color: #dc3545;"></i><p style="color: #dc3545; margin-top:10px;">Error loading datasets.</p></div>`;
+        console.error("Fetch error:", e);
+      }
+    }
+
+
+
+
+  </script>
+
+</body>
+
+</html>

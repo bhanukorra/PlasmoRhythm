@@ -1,0 +1,30 @@
+# secrets
+config.inc.php
+
+# huge data (do NOT upload)
+data/
+data_downloadsection/
+human_motta_KK/
+human_motta_KK.zip
+R_studio_WD/
+R_studio_WD.zip
+Mapped_datasets_7_11_25/
+Mapped_datasets_7_11_25.zip
+Metacycle_output_DS6-DS12_june2025/
+Metacycle_output_DS6-DS12_june2025.zip
+old_download_section/
+backup_scripts/
+Archive/
+Archive.zip
+PlasmoRHythm_Search_bar.csv
+PlasmoRHythm_Search_bar.csv.zip
+*.zip
+*.xlsx
+*.xls
+*.pptx
+
+# junk
+* copy*
+.RData
+.Rhistory
+.DS_Store
