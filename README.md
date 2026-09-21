@@ -1,30 +1,58 @@
 # PlasmoRhythm
 
-**A circadian rhythmicity database for *Plasmodium*, Anopheles vectors, and human host omics**
+PlasmoRhythm is a web-accessible circadian rhythmicity database for malaria research. It integrates transcriptomics, metabolomics, and proteomics time-series datasets from *Plasmodium* parasites, Anopheles vectors, and human host samples, with precomputed MetaCycle statistics (ARS, JTK, LS, META2D), interactive plots, gene search, virulence and drug modules, and dataset downloads.
+
+## Features
+
+- Search rhythmicity across transcriptomics, metabolomics, and proteomics datasets.
+- Supports *P. falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*, *A. gambiae*, *A. stephensi*, and human host data.
+- Precomputed MetaCycle results: **ARS**, **JTK**, **LS**, and **META2D**.
+- Interactive time-series plots, CSV download of results, and dataset file downloads (original / processed / meta2D).
+- Additional modules for gene search, virulence factors, and drug interactions.
+- Freely available through the **PlasmoRhythm** web platform.
 
 ---
 
-## Overview
+## Dependencies
 
-PlasmoRhythm is a web-accessible database for exploring circadian and intraerythrocytic-cycle (IDC) rhythmicity in malaria-related omics datasets.
+- Apache + PHP
+- MySQL / MariaDB
+- PHP extensions: `mysqli`, `pdo_sqlite` (download catalog)
 
-The resource integrates **transcriptomics**, **metabolomics**, and **proteomics** time-series data with precomputed MetaCycle rhythmicity statistics (**ARS**, **JTK**, **LS**, **META2D**), interactive expression plots, gene search, virulence and drug-interaction modules, and dataset downloads.
+---
 
-| | |
-|---|---|
-| **Organisms** | *Plasmodium falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*, *Anopheles gambiae*, *A. stephensi*, *Homo sapiens* (host) |
-| **Omics** | Transcriptomics · Metabolomics · Proteomics |
-| **Modules** | Rhythmicity search · Gene search · Virulence · Drug interactions · Download |
+## Usage
+
+### Clone the repository
+
+```bash
+git clone https://github.com/bhanukorra/PlasmoRhythm.git
+```
+
+### Navigate to the directory
+
+```bash
+cd PlasmoRhythm
+```
+
+### Run locally (optional)
+
+1. Install Apache, PHP, and MySQL (e.g. LAMPP / XAMPP).
+2. Import the PlasmoRhythm MySQL database dump (provided with the archival data release / Zenodo deposit).
+3. Configure database credentials in a local config file (do not commit passwords).
+4. Place the project under the web root and open `index.html`.
+
+For routine use, access the live web database (recommended) rather than running a local copy.
+
+**Web database:** [ADD LIVE URL]
 
 ---
 
 ## Availability
 
-- **Web database:** [ADD LIVE URL]  
-- **Source code:** https://github.com/bhanukorra/PlasmoRhythm  
-- **Archival snapshot (DOI):** https://doi.org/10.5281/zenodo.XXXXXXX *(add after Zenodo deposit)*  
-
-PlasmoRhythm is freely available online. Source code for this publication is deposited at GitHub, with an archival DOI provided via Zenodo.
+- **Website:** [ADD LIVE URL]  
+- **GitHub:** https://github.com/bhanukorra/PlasmoRhythm  
+- **Archival DOI (Zenodo):** https://doi.org/10.5281/zenodo.XXXXXXX *(add after deposit)*  
 
 ---
 
@@ -36,41 +64,8 @@ If you use PlasmoRhythm, please cite:
 
 ---
 
-## Repository contents
+## Developer
 
-| Item | Description |
-|------|-------------|
-| Website (`*.php`, `*.html`, `assets/`) | PlasmoRhythm web interface |
-| `download_section/` | Download catalog and file-serving API |
-| `database/` | MySQL database dump (when included in the release) |
-| `README.md` | This file |
+**CG&T Lab, Indian Institute of Technology Hyderabad**
 
-Large raw data files served by the live Download module are hosted with the website (or a separate data deposit) and are not required to use this code repository.
-
----
-
-## Database
-
-PlasmoRhythm is backed by a MySQL database in which each omics dataset is stored as a dedicated table containing feature identifiers, MetaCycle statistics (ARS, JTK, LS, META2D), and time-point values for plotting. Additional tables support gene search, virulence factors, and drug interactions.
-
-| Module | Coverage |
-|--------|----------|
-| Transcriptomics | *P. falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*, *A. gambiae*, *A. stephensi*, host |
-| Metabolomics | *P. falciparum* |
-| Proteomics | *P. falciparum*, *A. stephensi* |
-| Download | Original, processed, and meta2D files by species and study |
-
----
-
-## Local installation (optional)
-
-1. Install Apache, PHP, and MySQL (e.g. LAMPP/XAMPP).  
-2. Import the database dump from `database/` as `Plasmo_Rhythm`.  
-3. Configure database credentials locally (do not commit passwords).  
-4. Place the project under the web root and open `index.html`.
-
----
-
-## License
-
-This repository is released under the [MIT License](LICENSE).
+📩 Email: [cgntlab@gmail.com](mailto:cgntlab@gmail.com)
