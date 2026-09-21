@@ -13,6 +13,30 @@ PlasmoRhythm is a web-accessible circadian rhythmicity database for malaria rese
 
 ---
 
+## Datasets
+
+PlasmoRhythm currently includes **69 omics datasets** used for rhythmicity search, plus supporting tables for gene search, virulence, and drug interactions.
+
+| Module | Organism | Datasets |
+|--------|----------|----------:|
+| Transcriptomics | *Plasmodium falciparum* | 14 |
+| Transcriptomics | *Plasmodium vivax* | 13 |
+| Transcriptomics | *Homo sapiens* (host) | 11 |
+| Transcriptomics | *Plasmodium chabaudi* | 11 |
+| Transcriptomics | *Anopheles gambiae* | 4 |
+| Transcriptomics | *Anopheles stephensi* | 2 |
+| Transcriptomics | *Plasmodium berghei* | 2 |
+| Metabolomics | *Plasmodium falciparum* | 10 |
+| Proteomics | *Plasmodium falciparum* | 1 |
+| Proteomics | *Anopheles stephensi* | 1 |
+| **Total omics datasets** | | **69** |
+
+Supporting database content also includes a global gene/dataset search index, virulence-factor tables, and drug-interaction data.
+
+Downloadable original / processed / meta2D files for these studies are available from the PlasmoRhythm Download page.
+
+---
+
 ## Dependencies
 
 - Apache + PHP
@@ -38,11 +62,11 @@ cd PlasmoRhythm
 ### Run locally (optional)
 
 1. Install Apache, PHP, and MySQL (e.g. LAMPP / XAMPP).
-2. Import the PlasmoRhythm MySQL database dump (provided with the archival data release / Zenodo deposit).
+2. Import the PlasmoRhythm MySQL database dump (archival / Zenodo data release).
 3. Configure database credentials in a local config file (do not commit passwords).
 4. Place the project under the web root and open `index.html`.
 
-For routine use, access the live web database (recommended) rather than running a local copy.
+For routine use, access the live web database (recommended).
 
 **Web database:** [ADD LIVE URL]
 
