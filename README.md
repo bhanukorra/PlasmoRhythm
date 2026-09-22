@@ -1,65 +1,120 @@
 # PlasmoRhythm
 
-PlasmoRhythm is a web-accessible circadian rhythmicity database for malaria research. It integrates transcriptomics, metabolomics, and proteomics time-series datasets from *Plasmodium* parasites, Anopheles vectors, and human host samples, with precomputed MetaCycle statistics (ARS, JTK, LS, META2D), interactive plots, gene search, virulence and drug modules, and dataset downloads.
+PlasmoRhythm is a circadian rhythmicity database for malaria research. It compiles published time-series omics datasets from *Plasmodium* parasites, Anopheles vectors, and human host samples, and provides precomputed MetaCycle rhythmicity results (ARS, JTK, LS, META2D) through a web interface.
+
+**Web database:** [ADD LIVE URL]
+
+---
 
 ## Features
 
-- Search rhythmicity across transcriptomics, metabolomics, and proteomics datasets.
-- Supports *P. falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*, *A. gambiae*, *A. stephensi*, and human host data.
-- Precomputed MetaCycle results: **ARS**, **JTK**, **LS**, and **META2D**.
-- Interactive time-series plots, CSV download of results, and dataset file downloads (original / processed / meta2D).
-- Additional modules for gene search, virulence factors, and drug interactions.
-- Freely available through the **PlasmoRhythm** web platform.
+- Curated transcriptomics, metabolomics, and proteomics time-series datasets
+- Rhythmicity statistics from MetaCycle (ARS, JTK, LS, META2D)
+- Interactive search, plots, and downloads on the PlasmoRhythm website
+- Supporting modules for gene search, virulence factors, and drug interactions
 
 ---
 
-## Datasets
-
-PlasmoRhythm includes **69 omics datasets** across transcriptomics, metabolomics, and proteomics.
+## Data summary
 
 | Omics | Organisms | N |
 |-------|-----------|--:|
-| Transcriptomics | *P. falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*, *A. gambiae*, *A. stephensi*, host | 57 |
+| Transcriptomics | *P. falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*, *A. gambiae*, *A. stephensi*, host | 56 |
 | Metabolomics | *P. falciparum* | 10 |
 | Proteomics | *P. falciparum*, *A. stephensi* | 2 |
-| **Total** | | **69** |
-
-Full dataset list (study and condition for each entry): [`docs/Supplementary_Table_1_Datasets.md`](docs/Supplementary_Table_1_Datasets.md)
+| **Total** | | **68** |
 
 ---
 
-## Dependencies
+## Data sources (where datasets were taken from)
 
-- Apache + PHP
-- MySQL / MariaDB
-- PHP extensions: `mysqli`, `pdo_sqlite` (download catalog)
+| Omics | Species | Source publications |
+|-------|---------|---------------------|
+| Transcriptomics | *P. falciparum* | Babbitt et al., 2012; Bozdech et al., 2003; Foth et al., 2011; Kucharski et al., 2020; Painter et al., 2018; Smith et al., 2020; Subudhi et al., 2020 |
+| Transcriptomics | *P. vivax* | Bozdech et al., 2008; Motta et al., 2023 |
+| Transcriptomics | *P. chabaudi* | Rijo-Ferreira et al., 2020; Subudhi et al., 2020 |
+| Transcriptomics | *P. berghei* | Bento et al., 2025 |
+| Transcriptomics | *A. gambiae* | Rund et al., 2011 |
+| Transcriptomics | *A. stephensi* | Bento et al., 2025 |
+| Transcriptomics | *H. sapiens* (host) | Motta et al., 2023 |
+| Metabolomics | *P. falciparum* | Olszewski et al., 2009; Tewari et al., 2020; Tewari et al., 2022 |
+| Proteomics | *P. falciparum* | Foth et al., 2011 |
+| Proteomics | *A. stephensi* | Bento et al., 2025 |
 
 ---
 
-## Usage
+## Supplementary Table 1. Datasets in PlasmoRhythm
 
-### Clone the repository
-
-```bash
-git clone https://github.com/bhanukorra/PlasmoRhythm.git
-```
-
-### Navigate to the directory
-
-```bash
-cd PlasmoRhythm
-```
-
-### Run locally (optional)
-
-1. Install Apache, PHP, and MySQL (e.g. LAMPP / XAMPP).
-2. Import the PlasmoRhythm MySQL database dump (archival / Zenodo data release).
-3. Configure database credentials in a local config file (do not commit passwords).
-4. Place the project under the web root and open `index.html`.
-
-For routine use, access the live web database (recommended).
-
-**Web database:** [ADD LIVE URL]
+| No. | Omics | Species | Study / Publication | Strain / Condition |
+|----:|-------|---------|---------------------|--------------------|
+| 1 | Metabolomics | *P. falciparum* | Olszewski et al., 2009 | 3D7_extracellular_iRBCs |
+| 2 | Metabolomics | *P. falciparum* | Olszewski et al., 2009 | 3D7_extracellular_uRBCs |
+| 3 | Metabolomics | *P. falciparum* | Olszewski et al., 2009 | iRBCs |
+| 4 | Metabolomics | *P. falciparum* | Olszewski et al., 2009 | uRBCs |
+| 5 | Metabolomics | *P. falciparum* | Tewari et al., 2020 | NF54_iRBCs |
+| 6 | Metabolomics | *P. falciparum* | Tewari et al., 2020 | NF54_uRBCs |
+| 7 | Metabolomics | *P. falciparum* | Tewari et al., 2022 | Dd2_iRBCs_PA_treated |
+| 8 | Metabolomics | *P. falciparum* | Tewari et al., 2022 | Dd2_iRBCs_PA_untreated |
+| 9 | Metabolomics | *P. falciparum* | Tewari et al., 2022 | Dd2_uRBCs_PA_treated |
+| 10 | Metabolomics | *P. falciparum* | Tewari et al., 2022 | Dd2_uRBCs_PA_untreated |
+| 11 | Proteomics | *A. stephensi* | Bento et al., 2025 | LD_Astephensi_salivary_SCP_Bento2025 |
+| 12 | Proteomics | *P. falciparum* | Foth et al., 2011 | Dd2_Pfalci_Prot_Foth2011 |
+| 13 | Transcriptomics | *A. gambiae* | Rund et al., 2011 | DD_Agam_Body_Rund2011 |
+| 14 | Transcriptomics | *A. gambiae* | Rund et al., 2011 | DD_Agam_Head_Rund2011 |
+| 15 | Transcriptomics | *A. gambiae* | Rund et al., 2011 | LD_Agam_Body_Rund2011 |
+| 16 | Transcriptomics | *A. gambiae* | Rund et al., 2011 | LD_Agam_Head_Rund2011 |
+| 17 | Transcriptomics | *A. stephensi* | Bento et al., 2025 | DD_Astephensi_salivary_Bento2025 |
+| 18 | Transcriptomics | *A. stephensi* | Bento et al., 2025 | LD_Astephensi_salivary_Bento2025 |
+| 19 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_02 |
+| 20 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_08 |
+| 21 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_09 |
+| 22 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_10 |
+| 23 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_11 |
+| 24 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_13 |
+| 25 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_16 |
+| 26 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_17 |
+| 27 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_18 |
+| 28 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_19 |
+| 29 | Transcriptomics | *H. sapiens* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Host_Avg |
+| 30 | Transcriptomics | *P. berghei* | Bento et al., 2025 | DD_Pberghei_sporozoite_Bento2025 |
+| 31 | Transcriptomics | *P. berghei* | Bento et al., 2025 | LD_Pberghei_sporozoite_Bento2025 |
+| 32 | Transcriptomics | *P. chabaudi* | Rijo-Ferreira et al., 2020 | DD_Cry1Cry2_KO_RijoFerreira2020 |
+| 33 | Transcriptomics | *P. chabaudi* | Rijo-Ferreira et al., 2020 | DD_FBXL3_KO_RijoFerreira2020 |
+| 34 | Transcriptomics | *P. chabaudi* | Rijo-Ferreira et al., 2020 | LD_nightfed_RijoFerreira2020 |
+| 35 | Transcriptomics | *P. chabaudi* | Rijo-Ferreira et al., 2020 | LD_spreadout_RijoFerreira2020 |
+| 36 | Transcriptomics | *P. chabaudi* | Rijo-Ferreira et al., 2020 | WTDD_adlib_Ctrl_RijoFerreira2020 |
+| 37 | Transcriptomics | *P. chabaudi* | Rijo-Ferreira et al., 2020 | WTLD_adlib_RijoFerreira2020 |
+| 38 | Transcriptomics | *P. chabaudi* | Subudhi et al., 2020 | DL_mismatched_Subudhi2020 |
+| 39 | Transcriptomics | *P. chabaudi* | Subudhi et al., 2020 | LD_PchSR10_KO_Subudhi2020 |
+| 40 | Transcriptomics | *P. chabaudi* | Subudhi et al., 2020 | LD_PchWT_Subudhi2020 |
+| 41 | Transcriptomics | *P. chabaudi* | Subudhi et al., 2020 | LD_matched_Subudhi2020 |
+| 42 | Transcriptomics | *P. falciparum* | Babbitt et al., 2012 | 3D7_isoleucine_control_Babbitt2012 |
+| 43 | Transcriptomics | *P. falciparum* | Babbitt et al., 2012 | 3D7_isoleucine_starve_Babbitt2012 |
+| 44 | Transcriptomics | *P. falciparum* | Bozdech et al., 2003 | HB3_Pfal_Bozdech2003 |
+| 45 | Transcriptomics | *P. falciparum* | Foth et al., 2011 | Pfal_Dd2_Foth2011 |
+| 46 | Transcriptomics | *P. falciparum* | Kucharski et al., 2020 | 3D7_schiz_Kucharski2020 |
+| 47 | Transcriptomics | *P. falciparum* | Kucharski et al., 2020 | 3D7_schiz_array_Kucharski2020 |
+| 48 | Transcriptomics | *P. falciparum* | Painter et al., 2018 | 3D7attB_4TU_Labeled_Painter_2018 |
+| 49 | Transcriptomics | *P. falciparum* | Painter et al., 2018 | 3D7attB_Total_RNA_Painter_2018 |
+| 50 | Transcriptomics | *P. falciparum* | Painter et al., 2018 | 3D7attB_Unlabeled_Painter_2018 |
+| 51 | Transcriptomics | *P. falciparum* | Smith et al., 2020 | Constant-condition_3D7_Smith2020 |
+| 52 | Transcriptomics | *P. falciparum* | Smith et al., 2020 | Constant-condition_D6_Smith2020 |
+| 53 | Transcriptomics | *P. falciparum* | Smith et al., 2020 | Constant-condition_FVONIH_Smith2020 |
+| 54 | Transcriptomics | *P. falciparum* | Smith et al., 2020 | Constant-condition_SA250_Smith2020 |
+| 55 | Transcriptomics | *P. falciparum* | Subudhi et al., 2020 | Constant-condition_II3_Subudhi_2020 |
+| 56 | Transcriptomics | *P. vivax* | Bozdech et al., 2008 | smru1_Pvivax_Bozdech_2008 |
+| 57 | Transcriptomics | *P. vivax* | Bozdech et al., 2008 | smru2_Pvivax_Bozdech_2008 |
+| 58 | Transcriptomics | *P. vivax* | Bozdech et al., 2008 | smru3_Pvivax_Bozdech_2008 |
+| 59 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_02 |
+| 60 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_08 |
+| 61 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_09 |
+| 62 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_10 |
+| 63 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_11 |
+| 64 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_13 |
+| 65 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_16 |
+| 66 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_17 |
+| 67 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_19 |
+| 68 | Transcriptomics | *P. vivax* | Motta et al., 2023 | Ex_vivo_Pvivax_Motta2023_Parasite_Avg_expres |
 
 ---
 
