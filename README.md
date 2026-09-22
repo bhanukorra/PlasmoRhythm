@@ -35,6 +35,10 @@ Supporting database content also includes a global gene/dataset search index, vi
 
 Downloadable original / processed / meta2D files for these studies are available from the PlasmoRhythm Download page.
 
+A curated list of datasets included in PlasmoRhythm is provided as:
+
+- [`docs/Supplementary_Table_1_BIOINF-2026-0275.xlsx`](docs/Supplementary_Table_1_BIOINF-2026-0275.xlsx)
+
 ---
 
 ## Dependencies
