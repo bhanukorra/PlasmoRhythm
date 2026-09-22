@@ -121,7 +121,7 @@ PlasmoRhythm is a circadian rhythmicity database for malaria research. It compil
 
 ## Availability
 
-- **Website:** [ADD LIVE URL]  
+- **Website:** https://project.iith.ac.in/cgntlab/PlasmoRhythm/index.html
 - **GitHub:** https://github.com/bhanukorra/PlasmoRhythm  
 - **Archival DOI (Zenodo):** https://doi.org/10.5281/zenodo.XXXXXXX *(add after deposit)*  
 
