@@ -43,7 +43,7 @@ PlasmoRhythm is a circadian rhythmicity database for malaria research. It compil
 
 ---
 
-## Supplementary Table 1. Datasets in PlasmoRhythm
+## Datasets in PlasmoRhythm
 
 | No. | Omics | Species | Study / Publication | Strain / Condition |
 |----:|-------|---------|---------------------|--------------------|
