@@ -15,29 +15,16 @@ PlasmoRhythm is a web-accessible circadian rhythmicity database for malaria rese
 
 ## Datasets
 
-PlasmoRhythm currently includes **69 omics datasets** used for rhythmicity search, plus supporting tables for gene search, virulence, and drug interactions.
+PlasmoRhythm includes **69 omics datasets** across transcriptomics, metabolomics, and proteomics.
 
-| Module | Organism | Datasets |
-|--------|----------|----------:|
-| Transcriptomics | *Plasmodium falciparum* | 14 |
-| Transcriptomics | *Plasmodium vivax* | 13 |
-| Transcriptomics | *Homo sapiens* (host) | 11 |
-| Transcriptomics | *Plasmodium chabaudi* | 11 |
-| Transcriptomics | *Anopheles gambiae* | 4 |
-| Transcriptomics | *Anopheles stephensi* | 2 |
-| Transcriptomics | *Plasmodium berghei* | 2 |
-| Metabolomics | *Plasmodium falciparum* | 10 |
-| Proteomics | *Plasmodium falciparum* | 1 |
-| Proteomics | *Anopheles stephensi* | 1 |
-| **Total omics datasets** | | **69** |
+| Omics | Organisms | N |
+|-------|-----------|--:|
+| Transcriptomics | *P. falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*, *A. gambiae*, *A. stephensi*, host | 57 |
+| Metabolomics | *P. falciparum* | 10 |
+| Proteomics | *P. falciparum*, *A. stephensi* | 2 |
+| **Total** | | **69** |
 
-Supporting database content also includes a global gene/dataset search index, virulence-factor tables, and drug-interaction data.
-
-Downloadable original / processed / meta2D files for these studies are available from the PlasmoRhythm Download page.
-
-A curated list of datasets included in PlasmoRhythm is provided as:
-
-- [`docs/Supplementary_Table_1_BIOINF-2026-0275.xlsx`](docs/Supplementary_Table_1_BIOINF-2026-0275.xlsx)
+Full dataset list (study and condition for each entry): [`docs/Supplementary_Table_1_Datasets.md`](docs/Supplementary_Table_1_Datasets.md)
 
 ---
 
