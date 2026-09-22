@@ -2,7 +2,7 @@
 
 PlasmoRhythm is a circadian rhythmicity database for malaria research. It compiles published time-series omics datasets from *Plasmodium* parasites, Anopheles vectors, and human host samples, and provides precomputed MetaCycle rhythmicity results (ARS, JTK, LS, META2D) through a web interface.
 
-**Web database:** [ADD LIVE URL]
+**Database:** https://project.iith.ac.in/cgntlab/PlasmoRhythm/index.html
 
 ---
 
