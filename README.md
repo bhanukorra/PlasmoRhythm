@@ -138,5 +138,4 @@ If you use PlasmoRhythm, please cite:
 ## Developer
 
 **CG&T Lab, Indian Institute of Technology Hyderabad**
-
-📩 Email: [cgntlab@gmail.com](mailto:cgntlab@gmail.com)
+**CRDB Lab, Indian Institute of Technology Hyderabad**
