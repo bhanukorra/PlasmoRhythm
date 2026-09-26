@@ -19,15 +19,16 @@ This repository contains the source code for the PlasmoRhythm web application.
 
 Datasets were compiled from the following published studies.
 
-| Omics | Species | Source |
-|-------|---------|--------|
-| Transcriptomics | *Plasmodium falciparum* | Babbitt et al., 2012; Bozdech et al., 2003; Foth et al., 2011; Kucharski et al., 2020; Painter et al., 2018; Smith et al., 2020; Subudhi et al., 2020 |
-| Transcriptomics | *Plasmodium vivax* | Bozdech et al., 2008; Motta et al., 2023 |
-| Transcriptomics | *Plasmodium chabaudi* | Rijo-Ferreira et al., 2020; Subudhi et al., 2020 |
-| Transcriptomics | *Plasmodium berghei* | Bento et al., 2025 |
-| Transcriptomics | *Anopheles gambiae* | Rund et al., 2011 |
-| Transcriptomics | *Anopheles stephensi* | Bento et al., 2025 |
-| Transcriptomics | *Homo sapiens* (host) | Motta et al., 2023 |
-| Metabolomics | *Plasmodium falciparum* | Olszewski et al., 2009; Tewari et al., 2020; Tewari et al., 2022 |
-| Proteomics | *Plasmodium falciparum* | Foth et al., 2011 |
-| Proteomics | *Anopheles stephensi* | Bento et al., 2025 |
+| Omics | Species | Datasets | Source |
+|-------|---------|---------:|--------|
+| Transcriptomics | *Plasmodium falciparum* | 14 | Babbitt et al., 2012; Bozdech et al., 2003; Foth et al., 2011; Kucharski et al., 2020; Painter et al., 2018; Smith et al., 2020; Subudhi et al., 2020 |
+| Transcriptomics | *Plasmodium vivax* | 13 | Bozdech et al., 2008; Motta et al., 2023 |
+| Transcriptomics | *Plasmodium chabaudi* | 10 | Rijo-Ferreira et al., 2020; Subudhi et al., 2020 |
+| Transcriptomics | *Plasmodium berghei* | 2 | Bento et al., 2025 |
+| Transcriptomics | *Anopheles gambiae* | 4 | Rund et al., 2011 |
+| Transcriptomics | *Anopheles stephensi* | 2 | Bento et al., 2025 |
+| Transcriptomics | *Homo sapiens* (host) | 11 | Motta et al., 2023 |
+| Metabolomics | *Plasmodium falciparum* | 10 | Olszewski et al., 2009; Tewari et al., 2020; Tewari et al., 2022 |
+| Proteomics | *Plasmodium falciparum* | 1 | Foth et al., 2011 |
+| Proteomics | *Anopheles stephensi* | 1 | Bento et al., 2025 |
+| **Total** | | **68** | |
