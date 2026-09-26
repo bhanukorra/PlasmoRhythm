@@ -14,3 +14,20 @@ This repository contains the source code for the PlasmoRhythm web application.
 - Rhythmicity of Virulence Factors (RVF) module for putative *Plasmodium* virulence genes
 - Rhythmicity of Interactors of Antimalarial Drugs (RIAD) module
 - Downloads available at the dataset level: original data, processed expression matrices, metadata (preprocessing and MetaCycle parameters), and MetaCycle output files
+
+## Data sources
+
+Datasets were compiled from the following published studies.
+
+| Omics | Species | Source |
+|-------|---------|--------|
+| Transcriptomics | *Plasmodium falciparum* | Babbitt et al., 2012; Bozdech et al., 2003; Foth et al., 2011; Kucharski et al., 2020; Painter et al., 2018; Smith et al., 2020; Subudhi et al., 2020 |
+| Transcriptomics | *Plasmodium vivax* | Bozdech et al., 2008; Motta et al., 2023 |
+| Transcriptomics | *Plasmodium chabaudi* | Rijo-Ferreira et al., 2020; Subudhi et al., 2020 |
+| Transcriptomics | *Plasmodium berghei* | Bento et al., 2025 |
+| Transcriptomics | *Anopheles gambiae* | Rund et al., 2011 |
+| Transcriptomics | *Anopheles stephensi* | Bento et al., 2025 |
+| Transcriptomics | *Homo sapiens* (host) | Motta et al., 2023 |
+| Metabolomics | *Plasmodium falciparum* | Olszewski et al., 2009; Tewari et al., 2020; Tewari et al., 2022 |
+| Proteomics | *Plasmodium falciparum* | Foth et al., 2011 |
+| Proteomics | *Anopheles stephensi* | Bento et al., 2025 |
