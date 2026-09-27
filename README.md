@@ -10,18 +10,6 @@ This repository contains the source code for the PlasmoRhythm web application.
 
 PlasmoRhythm is described in a manuscript submitted to *Bioinformatics* (BIOINF-2026-0275).
 
-## Labs
-
-The database is developed at the Department of Biotechnology, Indian Institute of Technology Hyderabad, together with the Rijo-Ferreira laboratory at the University of California, Berkeley.
-
-| Laboratory | Lead |
-|------------|------|
-| [Circadian Biology Laboratory](https://www.circadianlab-iith.com/), IIT Hyderabad | Dr. Sandipan Ray |
-| [Laboratory of Dr. Rahul Kumar](https://people.iith.ac.in/rahulk/index.html), IIT Hyderabad | Dr. Rahul Kumar |
-| [Rijo-Ferreira laboratory](https://rijoferreiralab.com/), University of California, Berkeley | Dr. Filipa Rijo-Ferreira |
-
-People working on PlasmoRhythm: Sourbh Rankawat, Kavita Kundal, Subashani, Sandip Das, Bianca Parisi, and Bhanu Teja Korra.
-
 ## Features
 
 - Curated transcriptomics, metabolomics, and proteomics time-series datasets across *Plasmodium* parasites, mosquito vectors, and host organisms
