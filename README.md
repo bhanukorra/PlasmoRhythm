@@ -17,7 +17,7 @@ This repository contains the source code for the PlasmoRhythm web application.
 
 ## Data sources
 
-Datasets were compiled from the following published studies.
+**68 datasets** from published studies.
 
 | Omics | Species | Datasets | Source |
 |-------|---------|---------:|--------|
@@ -35,15 +35,15 @@ Datasets were compiled from the following published studies.
 
 ## Analysis code
 
-The `analysis/` folder contains the R scripts used to build the processed matrices and MetaCycle outputs. Raw expression files are not included in this repository. Each script filters or normalizes the study-specific input, then runs MetaCycle (`ARS`, `JTK`, and `LS`).
+R scripts in `analysis/` prepare the processed matrices and MetaCycle outputs (ARSER, JTK_CYCLE, and Lomb-Scargle). Raw data files are not part of this repository.
 
-| Script | Dataset | MetaCycle period (h) |
-|--------|---------|----------------------|
-| `analysis/DS5_HB3_script.R` | *P. falciparum* HB3 microarray (Bozdech et al., 2003). GenePix background correction, loess and scale normalization, mapping to PF3D7 | 47–49 |
-| `analysis/foth_Dd2_script.R` | *P. falciparum* Dd2 microarray, GSE24416 (Foth et al., 2011) | 46–50 |
-| `analysis/Kucharski_3D7_script.R` | *P. falciparum* 3D7 RNA-seq, GSE150484 (Kucharski et al., 2020) | 46–51 |
-| `analysis/pfalci_script_v2.R` | *P. chabaudi* SR10, GSE132643 (voom/TMM); *P. falciparum* 3D7, GSE66669 (Painter et al., 2018; log2 and quantile normalization) | 21–27; 47–49 |
-| `analysis/gambie_script.R` | *A. gambiae* head and body, LD and DD (Rund et al., 2011). GPL1321 probe-to-gene mapping | 20–28 |
-| `analysis/A.stephensie_script.R` | *A. stephensi* and *P. berghei*, GSE284425 (Bento et al., 2025) | 20–28 |
-| `analysis/ex_vivo_human_motta.R` | Human host ex vivo RNA-seq, GSE209877 (Motta et al., 2023) | 21–27 |
-| `analysis/metabolomics_script.R` | *P. falciparum* infected and uninfected red blood cell metabolites (Olszewski et al., 2009) | 40–56 and 16–32 |
+| Script | Study | Period searched (h) |
+|--------|-------|--------------------:|
+| [DS5_HB3_script.R](analysis/DS5_HB3_script.R) | *P. falciparum* HB3, Bozdech et al., 2003 | 47–49 |
+| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2, GSE24416, Foth et al., 2011 | 46–50 |
+| [Kucharski_3D7_script.R](analysis/Kucharski_3D7_script.R) | *P. falciparum* 3D7, GSE150484, Kucharski et al., 2020 | 46–51 |
+| [pfalci_script_v2.R](analysis/pfalci_script_v2.R) | *P. chabaudi* SR10, GSE132643; *P. falciparum* 3D7, GSE66669, Painter et al., 2018 | 21–27; 47–49 |
+| [gambie_script.R](analysis/gambie_script.R) | *A. gambiae* head and body, LD and DD, Rund et al., 2011 | 20–28 |
+| [A.stephensie_script.R](analysis/A.stephensie_script.R) | *A. stephensi* and *P. berghei*, GSE284425, Bento et al., 2025 | 20–28 |
+| [ex_vivo_human_motta.R](analysis/ex_vivo_human_motta.R) | Human host, GSE209877, Motta et al., 2023 | 21–27 |
+| [metabolomics_script.R](analysis/metabolomics_script.R) | *P. falciparum* metabolites, Olszewski et al., 2009 | 40–56 and 16–32 |
