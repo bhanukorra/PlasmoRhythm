@@ -15,9 +15,35 @@ This repository contains the source code for the PlasmoRhythm web application.
 - Rhythmicity of Interactors of Antimalarial Drugs (RIAD) module
 - Downloads available at the dataset level: original data, processed expression matrices, metadata (preprocessing and MetaCycle parameters), and MetaCycle output files
 
+## Modules
+
+| Module | What it shows |
+|--------|----------------|
+| Molecular Rhythmicity Viewer (MRV) | Rhythmicity across *Plasmodium* species, the mammalian host, and mosquito vectors. Search one or more genes, choose datasets and models, and set a p-value or q-value cutoff. |
+| Rhythmicity of Virulence Factors (RVF) | Transcript-level oscillation of putative *Plasmodium* virulence factors across the intraerythrocytic cycle. |
+| Rhythmicity of Interactors of Antimalarial Drugs (RIAD) | Rhythmicity of antimalarial-drug interactors and putative targets in *Plasmodium*. |
+
+## What a search returns
+
+For each gene and selected model, the result table reports:
+
+| Column | Meaning |
+|--------|---------|
+| Gene ID | Identifier used in that dataset |
+| Gene symbol | Gene name, when the source annotation provides one |
+| Description | Product description, when the source annotation provides one |
+| Amplitude | Strength of the fitted rhythm |
+| p-value | Significance from the selected model |
+| q-value | Benjamini–Hochberg adjusted value |
+| Period (h) | Estimated cycle length |
+| Phase (h) | Estimated peak time |
+| Rhythmicity plot | Observed time points and the fitted curve |
+
+Rows that do not pass the chosen cutoff are marked on the result page. Several datasets can be searched together, and the table can be downloaded as CSV.
+
 ## Data sources
 
-**68 datasets** from published studies.
+**68 datasets**: 56 transcriptomics, 10 metabolomics, and 2 proteomics.
 
 | Omics | Species | Datasets | Source |
 |-------|---------|---------:|--------|
@@ -33,17 +59,49 @@ This repository contains the source code for the PlasmoRhythm web application.
 | Proteomics | *Anopheles stephensi* | 1 | Bento et al., 2025 |
 | **Total** | | **68** | |
 
+Organisms covered:
+
+- Parasites: *P. falciparum*, *P. vivax*, *P. chabaudi*, *P. berghei*
+- Vectors: *A. gambiae*, *A. stephensi*
+- Host: *Homo sapiens*
+
+## Rhythmicity analysis
+
+Each processed time series was tested with MetaCycle.
+
+| Method | Role |
+|--------|------|
+| ARSER | Autoregressive spectral estimation of period, phase, and amplitude |
+| JTK_CYCLE | Non-parametric test of rhythmic ordering across time |
+| Lomb–Scargle | Periodogram method for uneven or regularly sampled series |
+| Meta2D | Integrated call across the methods above |
+
+The period window depends on the biology of the dataset: about 48 h for the *P. falciparum* intraerythrocytic cycle, about 24 h for mosquito and host circadian series, and both a long and a short window for the metabolite series. The exact minimum and maximum period used for each script is listed below.
+
 ## Analysis code
 
-R scripts in `analysis/` prepare the processed matrices and MetaCycle outputs (ARSER, JTK_CYCLE, and Lomb-Scargle). Raw data files are not part of this repository.
+Scripts in `analysis/` build the processed matrices and write the MetaCycle tables. The scripts are unchanged from the analysis folder. Raw expression files are not stored in this repository.
 
 | Script | Study | Period searched (h) |
 |--------|-------|--------------------:|
-| [DS5_HB3_script.R](analysis/DS5_HB3_script.R) | *P. falciparum* HB3, Bozdech et al., 2003 | 47–49 |
-| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2, GSE24416, Foth et al., 2011 | 46–50 |
-| [Kucharski_3D7_script.R](analysis/Kucharski_3D7_script.R) | *P. falciparum* 3D7, GSE150484, Kucharski et al., 2020 | 46–51 |
-| [pfalci_script_v2.R](analysis/pfalci_script_v2.R) | *P. chabaudi* SR10, GSE132643; *P. falciparum* 3D7, GSE66669, Painter et al., 2018 | 21–27; 47–49 |
-| [gambie_script.R](analysis/gambie_script.R) | *A. gambiae* head and body, LD and DD, Rund et al., 2011 | 20–28 |
-| [A.stephensie_script.R](analysis/A.stephensie_script.R) | *A. stephensi* and *P. berghei*, GSE284425, Bento et al., 2025 | 20–28 |
-| [ex_vivo_human_motta.R](analysis/ex_vivo_human_motta.R) | Human host, GSE209877, Motta et al., 2023 | 21–27 |
-| [metabolomics_script.R](analysis/metabolomics_script.R) | *P. falciparum* metabolites, Olszewski et al., 2009 | 40–56 and 16–32 |
+| [DS5_HB3_script.R](analysis/DS5_HB3_script.R) | *P. falciparum* HB3 microarray (Bozdech et al., 2003). GenePix background correction, within-array loess, between-array scale normalization, and mapping to PF3D7 | 47–49 |
+| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2 microarray, GSE24416 (Foth et al., 2011). GenePix normalization and oligo-to-gene summary | 46–50 |
+| [Kucharski_3D7_script.R](analysis/Kucharski_3D7_script.R) | *P. falciparum* 3D7 RNA-seq, GSE150484 (Kucharski et al., 2020). Low-expression filter on FPKM | 46–51 |
+| [pfalci_script_v2.R](analysis/pfalci_script_v2.R) | *P. chabaudi* SR10, GSE132643 (voom/TMM); *P. falciparum* 3D7, GSE66669 (Painter et al., 2018; log2 and quantile normalization) | 21–27; 47–49 |
+| [gambie_script.R](analysis/gambie_script.R) | *A. gambiae* head and body under LD and DD (Rund et al., 2011). GPL1321 probes mapped to genes; genes kept when log2 signal exceeds 4.5 in at least 30% of samples | 20–28 |
+| [A.stephensie_script.R](analysis/A.stephensie_script.R) | *A. stephensi* and *P. berghei*, GSE284425 (Bento et al., 2025). Replicate average and expression filter | 20–28 |
+| [ex_vivo_human_motta.R](analysis/ex_vivo_human_motta.R) | Human host ex vivo RNA-seq, GSE209877 (Motta et al., 2023). Ensembl identifiers mapped to gene names | 21–27 |
+| [metabolomics_script.R](analysis/metabolomics_script.R) | *P. falciparum* infected and uninfected red-blood-cell metabolites (Olszewski et al., 2009). Two period windows | 40–56 and 16–32 |
+
+Packages used by these scripts include MetaCycle, limma, dplyr, tidyr, tidyverse, readxl, GDCRNATools, and EnsDb.Hsapiens.v86.
+
+## Dataset download
+
+Each dataset on the website can be downloaded as:
+
+- Original data
+- Processed expression matrix
+- Metadata, including preprocessing and MetaCycle settings
+- MetaCycle output (ARSER, JTK_CYCLE, Lomb–Scargle, and Meta2D)
+
+A bulk download collects the combined workbooks for the transcriptome, metabolite, and proteome sets, together with the RVF and RIAD tables.
