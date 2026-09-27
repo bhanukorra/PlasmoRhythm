@@ -93,15 +93,22 @@ Scripts in `analysis/` build the processed matrices and write the MetaCycle tabl
 | [ex_vivo_human_motta.R](analysis/ex_vivo_human_motta.R) | Human host ex vivo RNA-seq, GSE209877 (Motta et al., 2023). Ensembl identifiers mapped to gene names | 21–27 |
 | [metabolomics_script.R](analysis/metabolomics_script.R) | *P. falciparum* infected and uninfected red-blood-cell metabolites (Olszewski et al., 2009). Two period windows | 40–56 and 16–32 |
 
-Packages used by these scripts include MetaCycle, limma, dplyr, tidyr, tidyverse, readxl, GDCRNATools, and EnsDb.Hsapiens.v86.
+## Packages
 
-## Dataset download
+The scripts do not pin package versions. The versions below are those installed with R 4.1.2 on the analysis machine. A blank version means that package is required by the script but is not installed here, so no version was recorded.
 
-Each dataset on the website can be downloaded as:
+| Package | Version | Used in |
+|---------|---------|---------|
+| limma | 3.50.3 | `DS5_HB3_script.R`, `foth_Dd2_script.R`, `pfalci_script_v2.R` |
+| dplyr | 1.1.4 | `DS5_HB3_script.R`, `gambie_script.R`, `A.stephensie_script.R` |
+| stringr | 1.5.1 | `DS5_HB3_script.R` |
+| tidyr | 1.3.1 | `DS5_HB3_script.R` |
+| R.utils | 2.12.3 | `foth_Dd2_script.R` (reading gzipped GenePix files) |
+| AnnotationDbi | 1.56.2 | `ex_vivo_human_motta.R` (Ensembl ID to gene name) |
+| MetaCycle | | All eight scripts |
+| tidyverse | | `metabolomics_script.R` |
+| readxl | | `metabolomics_script.R`, `pfalci_script_v2.R` |
+| GDCRNATools | | `pfalci_script_v2.R` (voom/TMM) |
+| EnsDb.Hsapiens.v86 | | `ex_vivo_human_motta.R` |
 
-- Original data
-- Processed expression matrix
-- Metadata, including preprocessing and MetaCycle settings
-- MetaCycle output (ARSER, JTK_CYCLE, Lomb–Scargle, and Meta2D)
-
-A bulk download collects the combined workbooks for the transcriptome, metabolite, and proteome sets, together with the RVF and RIAD tables.
+`A.stephensie_script.R` calls `dplyr` and MetaCycle functions without a `library()` line, so both still need to be loaded before that script is run.
