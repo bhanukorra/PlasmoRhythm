@@ -65,6 +65,7 @@ colnames(final_df)<-gsub("TP_","",colnames(final_df))
 final_df<-as.data.frame(final_df)
 row.names(final_df)<-final_df[,1]
 final_df<-final_df[,-1]
+colnames(final_df) <- gsub("gpr_files..", "", colnames(final_df))
 write.csv(final_df, "HB3_processed_file.csv", row.names = T)
 write.csv(avg_df, "HB3_mapped_file.csv", row.names = T)
 require(MetaCycle)
