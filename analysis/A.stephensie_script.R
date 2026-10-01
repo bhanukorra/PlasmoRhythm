@@ -1,6 +1,9 @@
 # Developed by CGNT, IIT Hyderabad
 # Released under the MIT License
 
+library(dplyr)
+library(MetaCycle)
+
 if (!exists("zip_path")) zip_path <- "path"
 zip_path <- path.expand(zip_path)
 if (!file.exists(zip_path)) stop("Set zip_path to the zip file. Not found: ", zip_path)

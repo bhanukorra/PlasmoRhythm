@@ -79,25 +79,6 @@ Each processed time series was tested with MetaCycle.
 
 The period window depends on the biology of the dataset: about 48 h for the *P. falciparum* intraerythrocytic cycle, about 24 h for mosquito and host circadian series, and both a long and a short window for the metabolite series.
 
-## Analysis code
-
-Developed by CGNT, IIT Hyderabad.
-
-Released under the [MIT License](LICENSE).
-
-| Script | Study |
-|--------|-------|
-| [DS5_HB3_script.R](analysis/DS5_HB3_script.R) | *P. falciparum* HB3 microarray (Bozdech et al., 2003). GenePix background correction, within-array loess, between-array scale normalization, and mapping to PF3D7 |
-| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2 microarray, GSE24416 (Foth et al., 2011). GenePix normalization and gene-level summary |
-| [smith_analysis_script.R](analysis/smith_analysis_script.R) | *P. falciparum* 3D7, D6, FVO-NIH, and SA250 (Smith et al., 2020). Low-expression filter on FPKM |
-| [voomTMM_script.R](analysis/voomTMM_script.R) | *P. falciparum* II3, LD matched, and DL mismatched (Subudhi et al., 2020). voom/TMM and replicate average |
-| [Kucharski_3D7_script.R](analysis/Kucharski_3D7_script.R) | *P. falciparum* 3D7 RNA-seq, GSE150484 (Kucharski et al., 2020). Low-expression filter on FPKM |
-| [pfalci_script_v2.R](analysis/pfalci_script_v2.R) | *P. chabaudi* SR10, GSE132643 (voom/TMM); *P. falciparum* 3D7, GSE66669 (Painter et al., 2018; log2 and quantile normalization) |
-| [gambie_script.R](analysis/gambie_script.R) | *A. gambiae* head and body under LD and DD (Rund et al., 2011). GPL1321 probes mapped to genes; genes kept when log2 signal exceeds 4.5 in at least 30% of samples |
-| [A.stephensie_script.R](analysis/A.stephensie_script.R) | *A. stephensi* and *P. berghei*, GSE284425 (Bento et al., 2025). Replicate average and expression filter |
-| [ex_vivo_human_motta.R](analysis/ex_vivo_human_motta.R) | Human host ex vivo RNA-seq, GSE209877 (Motta et al., 2023). Ensembl identifiers mapped to gene names |
-| [metabolomics_script.R](analysis/metabolomics_script.R) | *P. falciparum* infected and uninfected red-blood-cell metabolites (Olszewski et al., 2009) |
-
 ## Packages
 
 The scripts do not pin package versions. The versions below are those installed with R 4.1.2 on the analysis machine. A blank version means that package is required by the script but is not installed here, so no version was recorded.
@@ -116,4 +97,4 @@ The scripts do not pin package versions. The versions below are those installed 
 | GDCRNATools | | `pfalci_script_v2.R`, `smith_analysis_script.R`, `voomTMM_script.R` (voom/TMM) |
 | EnsDb.Hsapiens.v86 | | `ex_vivo_human_motta.R` |
 
-`A.stephensie_script.R` calls `dplyr` and MetaCycle functions without a `library()` line, so both still need to be loaded before that script is run.
+Developed by CGNT, IIT Hyderabad. Released under the [MIT License](LICENSE).

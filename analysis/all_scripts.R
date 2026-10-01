@@ -527,6 +527,9 @@ write.csv(summary_tab, file.path(out_folder, "summary_all_samples.csv"), row.nam
 # A.stephensie_script.R
 ############################################################
 
+library(dplyr)
+library(MetaCycle)
+
 if (!exists("zip_path")) zip_path <- "path"
 zip_path <- path.expand(zip_path)
 if (!file.exists(zip_path)) stop("Set zip_path to the zip file. Not found: ", zip_path)
