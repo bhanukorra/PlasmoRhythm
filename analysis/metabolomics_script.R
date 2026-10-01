@@ -46,3 +46,17 @@ cyc <- meta2d(infile="DS1_infected.csv",filestyle="csv", outdir="DS1_infected(16
               minper=40, maxper=56, timepoints="Line1",outputFile=T, ARSdefaultPer=48, outRawData=TRUE)
 cyc <- meta2d(infile="DS1_uninfected.csv",filestyle="csv", outdir="DS1_uninfected(16,32).csv",
               minper=16, maxper=32, timepoints="Line1",outputFile=T, ARSdefaultPer=24, outRawData=TRUE)
+
+
+
+
+
+###############################################################################
+# For datasets average values not required 
+###############################################################################
+
+require(MetaCycle)
+read.csv("file names")
+cyc <- meta2d(infile="Total.csv",filestyle="csv", outdir="meta2d_metabolomics(40,56).csv",minper=40, maxper=56, timepoints="Line1",outputFile=T, ARSdefaultPer=48, outRawData=TRUE)
+
+

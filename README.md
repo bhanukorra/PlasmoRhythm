@@ -89,7 +89,9 @@ Scripts in `analysis/` build the processed matrices and write the MetaCycle tabl
 | Script | Study | Period searched (h) |
 |--------|-------|--------------------:|
 | [DS5_HB3_script.R](analysis/DS5_HB3_script.R) | *P. falciparum* HB3 microarray (Bozdech et al., 2003). GenePix background correction, within-array loess, between-array scale normalization, and mapping to PF3D7 | 47–49 |
-| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2 microarray, GSE24416 (Foth et al., 2011). GenePix normalization and oligo-to-gene summary | 46–50 |
+| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2 microarray, GSE24416 (Foth et al., 2011). GenePix normalization and gene-level summary | 46–50 |
+| [smith_analysis_script.R](analysis/smith_analysis_script.R) | *P. falciparum* 3D7, D6, FVO-NIH, and SA250 (Smith et al., 2020). Low-expression filter on FPKM | 45–51 |
+| [voomTMM_script.R](analysis/voomTMM_script.R) | *P. falciparum* II3, LD matched, and DL mismatched (Subudhi et al., 2020). voom/TMM and replicate average | 22–26; 21–27 |
 | [Kucharski_3D7_script.R](analysis/Kucharski_3D7_script.R) | *P. falciparum* 3D7 RNA-seq, GSE150484 (Kucharski et al., 2020). Low-expression filter on FPKM | 46–51 |
 | [pfalci_script_v2.R](analysis/pfalci_script_v2.R) | *P. chabaudi* SR10, GSE132643 (voom/TMM); *P. falciparum* 3D7, GSE66669 (Painter et al., 2018; log2 and quantile normalization) | 21–27; 47–49 |
 | [gambie_script.R](analysis/gambie_script.R) | *A. gambiae* head and body under LD and DD (Rund et al., 2011). GPL1321 probes mapped to genes; genes kept when log2 signal exceeds 4.5 in at least 30% of samples | 20–28 |
@@ -104,15 +106,15 @@ The scripts do not pin package versions. The versions below are those installed 
 | Package | Version | Used in |
 |---------|---------|---------|
 | limma | 3.50.3 | `DS5_HB3_script.R`, `foth_Dd2_script.R`, `pfalci_script_v2.R` |
-| dplyr | 1.1.4 | `DS5_HB3_script.R`, `gambie_script.R`, `A.stephensie_script.R` |
+| dplyr | 1.1.4 | `DS5_HB3_script.R`, `gambie_script.R`, `A.stephensie_script.R`, `smith_analysis_script.R`, `voomTMM_script.R` |
 | stringr | 1.5.1 | `DS5_HB3_script.R` |
 | tidyr | 1.3.1 | `DS5_HB3_script.R` |
 | R.utils | 2.12.3 | `foth_Dd2_script.R` (reading gzipped GenePix files) |
 | AnnotationDbi | 1.56.2 | `ex_vivo_human_motta.R` (Ensembl ID to gene name) |
-| MetaCycle | | All eight scripts |
+| MetaCycle | | All analysis scripts |
 | tidyverse | | `metabolomics_script.R` |
 | readxl | | `metabolomics_script.R`, `pfalci_script_v2.R` |
-| GDCRNATools | | `pfalci_script_v2.R` (voom/TMM) |
+| GDCRNATools | | `pfalci_script_v2.R`, `smith_analysis_script.R`, `voomTMM_script.R` (voom/TMM) |
 | EnsDb.Hsapiens.v86 | | `ex_vivo_human_motta.R` |
 
 `A.stephensie_script.R` calls `dplyr` and MetaCycle functions without a `library()` line, so both still need to be loaded before that script is run.
