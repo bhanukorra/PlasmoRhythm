@@ -1,7 +1,31 @@
+# Developed by CGNT, IIT Hyderabad
+# Released under the MIT License
+
 ####################################################
 ####### Dataset 5: P.falci HB3 (Bozdech2003) #######
 ####################################################
-setwd("F:/plasmorhythm_R2/HB3_GPR_data_21-09-26/")
+if (!exists("zip_path")) zip_path <- "path"
+zip_path <- path.expand(zip_path)
+if (!file.exists(zip_path)) stop("Set zip_path to the zip file. Not found: ", zip_path)
+zip_root <- file.path(dirname(normalizePath(zip_path, winslash = "/")),
+                      paste0("unzipped_", tools::file_path_sans_ext(basename(zip_path))))
+if (!exists("zip_unpacked") || !identical(zip_unpacked, zip_path) || !dir.exists(zip_root)) {
+  if (dir.exists(zip_root)) unlink(zip_root, recursive = TRUE)
+  dir.create(zip_root, showWarnings = FALSE, recursive = TRUE)
+  unzip(zip_path, exdir = zip_root)
+  zip_unpacked <- zip_path
+}
+hits <- list.files(zip_root, pattern = "^HB3_FINAL_Genes_to_PF3D7_mapping\\.csv$",
+                    recursive = TRUE, full.names = TRUE, ignore.case = TRUE)
+if (!length(hits)) {
+  inside <- list.files(zip_root, recursive = TRUE)
+  inside <- inside[!grepl("(^|/)\\.|^__MACOSX/", inside)]
+  stop("Expected input file was not found in ", zip_path,
+       ".\nFiles in the zip:\n",
+       paste(utils::head(inside, 40), collapse = "\n"), call. = FALSE)
+}
+path <- dirname(normalizePath(hits[[1]], winslash = "/"))
+setwd(path)
 library(limma)
 library(dplyr)
 library(stringr)
@@ -65,7 +89,6 @@ colnames(final_df)<-gsub("TP_","",colnames(final_df))
 final_df<-as.data.frame(final_df)
 row.names(final_df)<-final_df[,1]
 final_df<-final_df[,-1]
-colnames(final_df) <- gsub("gpr_files..", "", colnames(final_df))
 write.csv(final_df, "HB3_processed_file.csv", row.names = T)
 write.csv(avg_df, "HB3_mapped_file.csv", row.names = T)
 require(MetaCycle)

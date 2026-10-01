@@ -1,7 +1,31 @@
+# Developed by CGNT, IIT Hyderabad
+# Released under the MIT License
+
 ## =====================================================================
 ## GSE209877 - human host TPM (quantile-normalized) -> MetaCycle
 ## =====================================================================
-setwd("F:/plasmorhythm_R2/Ex_vivo_human_motta/")
+if (!exists("zip_path")) zip_path <- "path"
+zip_path <- path.expand(zip_path)
+if (!file.exists(zip_path)) stop("Set zip_path to the zip file. Not found: ", zip_path)
+zip_root <- file.path(dirname(normalizePath(zip_path, winslash = "/")),
+                      paste0("unzipped_", tools::file_path_sans_ext(basename(zip_path))))
+if (!exists("zip_unpacked") || !identical(zip_unpacked, zip_path) || !dir.exists(zip_root)) {
+  if (dir.exists(zip_root)) unlink(zip_root, recursive = TRUE)
+  dir.create(zip_root, showWarnings = FALSE, recursive = TRUE)
+  unzip(zip_path, exdir = zip_root)
+  zip_unpacked <- zip_path
+}
+hits <- list.files(zip_root, pattern = "^GSE209877_cleaned_sample_.*_human\\.tsv$",
+                    recursive = TRUE, full.names = TRUE, ignore.case = TRUE)
+if (!length(hits)) {
+  inside <- list.files(zip_root, recursive = TRUE)
+  inside <- inside[!grepl("(^|/)\\.|^__MACOSX/", inside)]
+  stop("Expected input file was not found in ", zip_path,
+       ".\nFiles in the zip:\n",
+       paste(utils::head(inside, 40), collapse = "\n"), call. = FALSE)
+}
+path <- dirname(normalizePath(hits[[1]], winslash = "/"))
+setwd(path)
 library(EnsDb.Hsapiens.v86)
 library(MetaCycle)
 

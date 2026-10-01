@@ -1,3 +1,6 @@
+# Developed by CGNT, IIT Hyderabad
+# Released under the MIT License
+
 library("tidyverse")
 library(readxl)
 setwd("metabolite_data/")

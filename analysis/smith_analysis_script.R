@@ -1,3 +1,6 @@
+# Developed by CGNT, IIT Hyderabad
+# Released under the MIT License
+
 ##############################################
 ***********   Smith et/al work      **********
 ##############################################

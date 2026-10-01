@@ -1,3 +1,6 @@
+# Developed by CGNT, IIT Hyderabad
+# Released under the MIT License
+
 ## =====================================================================
 ## GSE24416 - GenePix .gpr (two-colour) -> filter -> gene level -> MetaCycle
 ## =====================================================================

@@ -52,16 +52,16 @@ Rows that do not pass the chosen cutoff are marked on the result page. Several d
 | Omics | Species | Datasets | Source |
 |-------|---------|---------:|--------|
 | Transcriptomics | *Plasmodium falciparum* | 14 | Babbitt et al., 2012; Bozdech et al., 2003; Foth et al., 2011; Kucharski et al., 2020; Painter et al., 2018; Smith et al., 2020; Subudhi et al., 2020 |
-| Transcriptomics | *Plasmodium vivax* | 12 | Bozdech et al., 2008; Motta et al., 2023 |
-| Transcriptomics | *Plasmodium chabaudi* | 11 | Rijo-Ferreira et al., 2020; Subudhi et al., 2020 |
+| Transcriptomics | *Plasmodium vivax* | 13 | Bozdech et al., 2008; Motta et al., 2023 |
+| Transcriptomics | *Plasmodium chabaudi* | 10 | Rijo-Ferreira et al., 2020; Subudhi et al., 2020 |
 | Transcriptomics | *Plasmodium berghei* | 2 | Bento et al., 2025 |
 | Transcriptomics | *Anopheles gambiae* | 4 | Rund et al., 2011 |
 | Transcriptomics | *Anopheles stephensi* | 2 | Bento et al., 2025 |
-| Transcriptomics | *Homo sapiens* (host) | 10 | Motta et al., 2023 |
+| Transcriptomics | *Homo sapiens* (host) | 11 | Motta et al., 2023 |
 | Metabolomics | *Plasmodium falciparum* | 10 | Olszewski et al., 2009; Tewari et al., 2020; Tewari et al., 2022 |
 | Proteomics | *Plasmodium falciparum* | 1 | Foth et al., 2011 |
 | Proteomics | *Anopheles stephensi* | 1 | Bento et al., 2025 |
-| **Total** | | **67** | |
+| **Total** | | **68** | |
 
 Organisms covered:
 
@@ -80,24 +80,26 @@ Each processed time series was tested with MetaCycle.
 | Lomb–Scargle | Periodogram method for uneven or regularly sampled series |
 | Meta2D | Integrated call across the methods above |
 
-The period window depends on the biology of the dataset: about 48 h for the *P. falciparum* intraerythrocytic cycle, about 24 h for mosquito and host circadian series, and both a long and a short window for the metabolite series. The exact minimum and maximum period used for each script is listed below.
+The period window depends on the biology of the dataset: about 48 h for the *P. falciparum* intraerythrocytic cycle, about 24 h for mosquito and host circadian series, and both a long and a short window for the metabolite series.
 
 ## Analysis code
 
-Scripts in `analysis/` build the processed matrices and write the MetaCycle tables. The scripts are unchanged from the analysis folder. Raw expression files are not stored in this repository.
+Developed by CGNT, IIT Hyderabad.
 
-| Script | Study | Period searched (h) |
-|--------|-------|--------------------:|
-| [DS5_HB3_script.R](analysis/DS5_HB3_script.R) | *P. falciparum* HB3 microarray (Bozdech et al., 2003). GenePix background correction, within-array loess, between-array scale normalization, and mapping to PF3D7 | 47–49 |
-| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2 microarray, GSE24416 (Foth et al., 2011). GenePix normalization and gene-level summary | 46–50 |
-| [smith_analysis_script.R](analysis/smith_analysis_script.R) | *P. falciparum* 3D7, D6, FVO-NIH, and SA250 (Smith et al., 2020). Low-expression filter on FPKM | 45–51 |
-| [voomTMM_script.R](analysis/voomTMM_script.R) | *P. falciparum* II3, LD matched, and DL mismatched (Subudhi et al., 2020). voom/TMM and replicate average | 22–26; 21–27 |
-| [Kucharski_3D7_script.R](analysis/Kucharski_3D7_script.R) | *P. falciparum* 3D7 RNA-seq, GSE150484 (Kucharski et al., 2020). Low-expression filter on FPKM | 46–51 |
-| [pfalci_script_v2.R](analysis/pfalci_script_v2.R) | *P. chabaudi* SR10, GSE132643 (voom/TMM); *P. falciparum* 3D7, GSE66669 (Painter et al., 2018; log2 and quantile normalization) | 21–27; 47–49 |
-| [gambie_script.R](analysis/gambie_script.R) | *A. gambiae* head and body under LD and DD (Rund et al., 2011). GPL1321 probes mapped to genes; genes kept when log2 signal exceeds 4.5 in at least 30% of samples | 20–28 |
-| [A.stephensie_script.R](analysis/A.stephensie_script.R) | *A. stephensi* and *P. berghei*, GSE284425 (Bento et al., 2025). Replicate average and expression filter | 20–28 |
-| [ex_vivo_human_motta.R](analysis/ex_vivo_human_motta.R) | Human host ex vivo RNA-seq, GSE209877 (Motta et al., 2023). Ensembl identifiers mapped to gene names | 21–27 |
-| [metabolomics_script.R](analysis/metabolomics_script.R) | *P. falciparum* infected and uninfected red-blood-cell metabolites (Olszewski et al., 2009). Two period windows | 40–56 and 16–32 |
+Released under the [MIT License](LICENSE).
+
+| Script | Study |
+|--------|-------|
+| [DS5_HB3_script.R](analysis/DS5_HB3_script.R) | *P. falciparum* HB3 microarray (Bozdech et al., 2003). GenePix background correction, within-array loess, between-array scale normalization, and mapping to PF3D7 |
+| [foth_Dd2_script.R](analysis/foth_Dd2_script.R) | *P. falciparum* Dd2 microarray, GSE24416 (Foth et al., 2011). GenePix normalization and gene-level summary |
+| [smith_analysis_script.R](analysis/smith_analysis_script.R) | *P. falciparum* 3D7, D6, FVO-NIH, and SA250 (Smith et al., 2020). Low-expression filter on FPKM |
+| [voomTMM_script.R](analysis/voomTMM_script.R) | *P. falciparum* II3, LD matched, and DL mismatched (Subudhi et al., 2020). voom/TMM and replicate average |
+| [Kucharski_3D7_script.R](analysis/Kucharski_3D7_script.R) | *P. falciparum* 3D7 RNA-seq, GSE150484 (Kucharski et al., 2020). Low-expression filter on FPKM |
+| [pfalci_script_v2.R](analysis/pfalci_script_v2.R) | *P. chabaudi* SR10, GSE132643 (voom/TMM); *P. falciparum* 3D7, GSE66669 (Painter et al., 2018; log2 and quantile normalization) |
+| [gambie_script.R](analysis/gambie_script.R) | *A. gambiae* head and body under LD and DD (Rund et al., 2011). GPL1321 probes mapped to genes; genes kept when log2 signal exceeds 4.5 in at least 30% of samples |
+| [A.stephensie_script.R](analysis/A.stephensie_script.R) | *A. stephensi* and *P. berghei*, GSE284425 (Bento et al., 2025). Replicate average and expression filter |
+| [ex_vivo_human_motta.R](analysis/ex_vivo_human_motta.R) | Human host ex vivo RNA-seq, GSE209877 (Motta et al., 2023). Ensembl identifiers mapped to gene names |
+| [metabolomics_script.R](analysis/metabolomics_script.R) | *P. falciparum* infected and uninfected red-blood-cell metabolites (Olszewski et al., 2009) |
 
 ## Packages
 
