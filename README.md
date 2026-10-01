@@ -47,7 +47,7 @@ Rows that do not pass the chosen cutoff are marked on the result page. Several d
 
 ## Data sources
 
-**68 datasets**: 56 transcriptomics, 10 metabolomics, and 2 proteomics.
+**67 datasets**: 56 transcriptomics, 9 metabolomics, and 2 proteomics.
 
 | Omics | Species | Datasets | Source |
 |-------|---------|---------:|--------|
@@ -58,10 +58,10 @@ Rows that do not pass the chosen cutoff are marked on the result page. Several d
 | Transcriptomics | *Anopheles gambiae* | 4 | Rund et al., 2011 |
 | Transcriptomics | *Anopheles stephensi* | 2 | Bento et al., 2025 |
 | Transcriptomics | *Homo sapiens* (host) | 11 | Motta et al., 2023 |
-| Metabolomics | *Plasmodium falciparum* | 10 | Olszewski et al., 2009; Tewari et al., 2020; Tewari et al., 2022 |
+| Metabolomics | *Plasmodium falciparum* | 9 | Olszewski et al., 2009; Tewari et al., 2020; Tewari et al., 2022 |
 | Proteomics | *Plasmodium falciparum* | 1 | Foth et al., 2011 |
 | Proteomics | *Anopheles stephensi* | 1 | Bento et al., 2025 |
-| **Total** | | **68** | |
+| **Total** | | **67** | |
 
 Organisms covered:
 
